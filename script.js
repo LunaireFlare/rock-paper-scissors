@@ -26,13 +26,13 @@ console.log(getComputerChoice());
 // human player chooses one of the three values in input
 function getHumanChoice() {
   switch (humChoice) {
-    case "Boulder":
+    case "boulder":
       return "Literally crushing your enemies. Straightforward and efficient.";
       break;
-    case "Codex": 
+    case "codex": 
       return "Knowledge is power, but you already knew that, right?";
       break;
-    case "Longsword":
+    case "longsword":
       return "A truly noble weapon, fit for the finest (and tallest) knight!";
       break;
     default:
@@ -44,14 +44,14 @@ console.log(getHumanChoice());
 
 // single-round logic
 function playRound(compChoice, humChoice) {
-  if (humChoice == "Boulder" && compChoice == 2 ||
-    humChoice == "Codex" && compChoice == 0 ||
-    humChoice == "Longsword" && compChoice == 1) {
+  if (humChoice == "boulder" && compChoice == 2 ||
+    humChoice == "codex" && compChoice == 0 ||
+    humChoice == "longsword" && compChoice == 1) {
       ++humanScore;     
       return "You have triumphed over your foe!";
-  } else if (humChoice == "Boulder" && compChoice == 1 ||
-    humChoice == "Codex" && compChoice == 2 ||
-    humChoice == "Longsword" && compChoice == 0) {
+  } else if (humChoice == "boulder" && compChoice == 1 ||
+    humChoice == "codex" && compChoice == 2 ||
+    humChoice == "longsword" && compChoice == 0) {
       ++computerScore;     
       return "Your enemy was stronger... This time."
     } else {
