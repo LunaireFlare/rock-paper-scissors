@@ -64,21 +64,24 @@ function playGame() {
     } 
   }
 
+
   // for loop to recall playRound() 5 times
   for (let round = 1; round <= 5; round++) {
     let compSelection = getComputerChoice();
     let humSelection = getHumanChoice();
     console.log(playRound(compSelection, humSelection));
-    console.log(`You have won ${humanScore} rounds. Your opponent has won ${computerScore} rounds.`);
+    console.log(`%cYou have won ${humanScore} rounds. Your opponent has won ${computerScore} rounds.`, "font-style:italic");
+    console.log("%cChoose your weapon for the next round.", "background-color: #575c55");
   }
 
   // winner declaration at the end of all 5 rounds
   if (humanScore > computerScore) {
-    return "Congratulations! You showed your might and won this duel."
+    console.log("%cCongratulations! You showed your might and won this duel.", "background-color:darkgreen")
   } else if (humanScore < computerScore) {
-    return "Your opponent proved stronger than you. Keep practicing."
+    console.log("%cYour opponent proved stronger than you. Keep practicing.", "background-color:darkred")
   } else {
-    return "Alas, a tie! The victory remains unclaimed."
+    console.log("%cAlas, a tie! The victory remains unclaimed.","background-color:#575c55");  
   }
 }
-console.log(playGame());
+ 
+playGame();
