@@ -5,15 +5,12 @@ function getComputerChoice() {
   let compChoice = Math.floor(Math.random() * 3);
   switch (compChoice) {
     case 0:
-      console.log("<Foe> Your opponent has chosen... Boulder.");
       return "Boulder";
       break;
     case 1:
-      console.log("<Foe> Your opponent has chosen... Codex.");
       return "Codex";
       break;
     case 2: 
-      console.log("<Foe> Your opponent has chosen... Longsword.");
       return "Longsword";
       break; 
   }
@@ -49,6 +46,7 @@ function playGame() {
 
   // logic of a single round = elect winner based on input and increment score accordingly
   function playRound(compSelection, humSelection) { 
+    console.log(`<Foe> Your opponent has chosen... ${compSelection}.`);
     if (humSelection == "boulder" && compSelection == "Longsword" ||
         humSelection == "codex" && compSelection == "Boulder" ||
         humSelection == "longsword" && compSelection == "Codex") {
@@ -63,7 +61,6 @@ function playGame() {
           return "Alas, a tie! No points this round."
     } 
   }
-
 
   // for loop to recall playRound() 5 times
   for (let round = 1; round <= 5; round++) {
