@@ -47,7 +47,7 @@ img {
 
 /* -- HEADER -- */
 .header {
-  padding: 40px 0 30px;
+  padding: 15px 0;
 }
 
 h1 {
@@ -66,12 +66,18 @@ h1 {
 .main {
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 20px;
   max-width: 900px;
   margin: 20px auto;
+  /* background-color: red; */
 }
 
 /* -- PLAYERS' CHOICE -- */
+/* .rules img {
+  max-width: 40px;
+  margin-right: 10px;
+} */
+
 .players-choice {
   display: flex;
   justify-content: space-evenly;
@@ -79,7 +85,14 @@ h1 {
 
 .players-choice p {
   font-weight: 600;
-  padding: 0 15px;
+  padding: 8px 15px;
+}
+
+.hero-choice .weapon-text {
+  font-weight: 300;
+  font-size: 14px;
+  max-width: 300px;
+  margin: auto;
 }
 
 .hero-choice,
@@ -88,8 +101,6 @@ h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
   padding: 20px;
   border: 2px solid #263560;
   border-radius: 4px;
@@ -98,23 +109,78 @@ h1 {
 
 .hero-choice .weapons {
   display: flex;
+  justify-content: center;
   gap: 20px;
 }
 
 .hero-choice button {
   border: none;
   background: transparent;
+  filter: brightness(70%);
+  transition: all 0.2s;
 }
 
 .hero-choice button:hover {
   cursor: pointer;
-  transform: scale(0.9);
+  transform: scale(1.05);
+  filter: none;
+}
+
+.hero-choice button:active {
+  filter: brightness(130%);
+}
+
+/* -- DUEL OUTPUT -- */
+.duel-output {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  /* background-color: yellow; */
+} 
+
+.duel-output p {
+  text-align: left;
+  line-height: 1.6;
+}
+
+.duel-output p:first-child {
+  padding-bottom: 10px;
+}
+
+
+/* -- DUEL OUTPUT -- */
+.finished-game {
+}
+
+.finished-game p {
+  font-size: 28px;
+  font-weight: bold;
+  color: #263560
+}
+
+.replay-button {
+  visibility: hidden;
+  padding: 10px 35px;
+  margin-top: 20px;
+  background: #953213;
+  color: #D2CEC3;
+  border: 2px solid #4B2910;
+  border-radius: 4px;
+  box-shadow: 0px -3px 0px #D2CEC3 inset;
+  transition: all 0.15s;
+}
+
+.replay-button:hover {
+  transform: scale(0.95);
+  background: #967E40;
 }
 
 
 /* -- FOOTER -- */
 .footer {
-  margin: 30px 0 15px;
+  margin: 30px 0 10px;
 }
 
 .footer p {
