@@ -9,28 +9,26 @@ const boulderIcon = document.querySelector('.boulder-icon');
 const codexIcon = document.querySelector('codex-icon');
 const longswordIcon = document.querySelector('longsword-icon');
 
-const h1 = document.querySelector("h1");
-h1.textContent = "This is a test";
-
-
 function getHeroChoice() {
   let heroChoice = "";
 
   weaponButtons.forEach((weapon) => {
-    weapon.adEventListener("click" () => {
+    weapon.addEventListener("click", () => {
       if (weapon.classList.contains("boulder-button")) {
         heroChoice = "boulder";
-        weaponText.textContent = "Literally crushing your enemies.Straightforward and efficient.";
+        weaponText.textContent = "Literally crushing your enemies. Straightforward and efficient.";
        } else if (weapon.classList.contains("codex-button")) {
         heroChoice = "codex";
         weaponText.innerText = "Knowledge is power, so, the more pages the better, right?";
        } else {
         heroChoice = "longsword";
-        weaponText.innerText = "A noble weapon, fit for the finest - and tallest - knights!";
+        weaponText.innerText = "A noble weapon, fit for the finest - and tallest - of knights!";
        };
       });
     });
   };
+
+  getHeroChoice();
 
 
 // computer randomly chooses and returns one of the available values
@@ -50,29 +48,6 @@ function getComputerChoice() {
       break; 
   }
 } 
-
-// human player chooses one of the three values in input (in the absence of value, prompts again)
-// function getHumanChoice() {
-//   let humChoice = prompt("Choose your weapon!", "Boulder  |  Codex  |  Longsword").toLowerCase();
-//   switch (humChoice) {
-//     case "boulder":
-//       console.log("<Hero> Literally crushing your enemies. Straightforward and efficient.");
-//       return humChoice;
-//       break;
-//     case "codex": 
-//       console.log("<Hero> Knowledge is power, so, the more pages the better, right?");
-//       return humChoice;
-//       break;
-//     case "longsword":
-//       console.log("<Hero> A noble weapon, fit for the finest - and tallest - knights!");
-//       return humChoice;
-//       break;
-//     default:
-//       console.error("You cannot go into battle empty-handed!");
-//       return getHumanChoice();
-//       break;
-//   }
-// }
 
 // function to play 5 rounds
 function playGame() {
@@ -115,11 +90,10 @@ function playGame() {
   }
 }
 
-
-let heroButton = document.querySelector('.boulder-button').addEventListener('click', changeImage() => {
-  heroButton.classList.remove(boulderIcon);
-  heroButton.classList.add(codexIcon);
-})
+// let heroButton = document.querySelector('.boulder-button').addEventListener('click', changeImage() {
+//    heroButton.classList.remove(boulderIcon);
+//    heroButton.classList.add(codexIcon);
+// })
 
 
 // playGame();
