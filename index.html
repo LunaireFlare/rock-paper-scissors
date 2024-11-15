@@ -8,7 +8,6 @@
   <link rel="icon" type="image/x-icon" href="/images/favicon.webp">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Metamorphous&display=swap">
-  <script type="module" src="script.js"></script>
 </head>
 
 <body>
@@ -20,43 +19,49 @@
   <img class="separator" src="images/separator.webp" alt="ornate separator">
 
   <main class="main">
+    <p class="rules">Whomever wins the most rounds <strong>out of five</strong> shall triumph.</p>
     <!-- DIV 1 - BOTH SIDES -->
     <div class="players-choice">
       <div class="hero-choice">
         <p>Which weapon will you choose?</p>
         <div class="weapons">
-          <button class="boulder-button"><img src="images/icon_boulder.webp" alt="icon of boulder"></button>
-          <button class="codex-button"><img src="images/icon_codex.webp" alt="icon of codex"></button>
-          <button class="longsword-button"><img src="images/icon_sword.webp" alt="icon of sword"></button>
+          <button class="weapon-button boulder-button"><img class="boulder-icon" src="images/icon_boulder.webp" alt="icon of boulder"></button>
+          <button class="weapon-button codex-button"><img class="codex-icon" src="images/icon_codex.webp" alt="icon of codex"></button>
+          <button class="weapon-button longsword-button"><img class="longsword-icon" src="images/icon_sword.webp" alt="icon of sword"></button>
         </div>
+        <p class="weapon-text">You cannot go into battle empty-handed.</p>
       </div>
 
       <div class="opponent-choice">
         <p>Your opponent chose...</p>
-        <img src="images/icon_opponent.webp" alt="icon of mysterious figure">
+        <img class="opponent-icon" src="images/icon_opponent.webp" alt="icon of mysterious figure">
       </div>
     </div>
 
     <!-- DIV 2 - ROUND AND POINTS -->
     <div class="duel-output">
-      <p>Round: 0</p>
-      <p>You haven't won a single round yet, and neither has the enemy. </p>
-      <p>No one has chosen a weapon yet.</p>
+      <img src="images/icon_feather.webp" alt="icon of feather">
+      <div class="duel-output-text">
+        <p>No weapon was chosen yet.</p>
+        <p><strong>Current round</strong>: 0</p>
+        <p>You haven't won a round yet, and neither has the enemy. </p>
+      </div>
     </div>
 
     <!-- DIV 3 - HIDDEN DIV WITH RESULTS AND REPLAY BUTTON -->
     <div class="finished-game">
       <p class="duel-result"></p>
-      <button class="replay-button"></button>
+      <button class="replay-button">Fight again?</button>
     </div>
   </main>
 
-  <img class="separator" src="images/separator.webp" alt="ornate separator">
+  <!-- <img class="separator" src="images/separator.webp" alt="ornate separator"> -->
 
   <footer class="footer">
     <p>Tale told by <a href="#">LunaireFlare &#9789;</a></p>
     <p>Graphic elements © <a href="https://www.kingdomcomerpg.com/">Kingdom Come Deliverance</a></p>
   </footer>
 
+  <script type="module" src="script.js"></script>
 </body>
 </html>
