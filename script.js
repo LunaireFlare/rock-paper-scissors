@@ -82,6 +82,7 @@ function playRound(heroSelection, opponentSelection) {
   for (round = 1; round <= 4; round++) {
     let opponentSelection = getOpponentChoice();
     let heroSelection = getHeroChoice();
+    playRound(heroSelection, opponentSelection);
     const roundText = document.querySelector(".round-text");
 
     // roundText.textContent = `You have won ${heroScore} rounds. Your opponent has won ${opponentScore} rounds.`;
