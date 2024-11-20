@@ -20,6 +20,7 @@ let round = 0;
 
 
 function getHeroChoice() {
+  return new Promise((resolve) => {
   let heroChoice = "";
 
   weaponButtons.forEach((weapon) => {
@@ -35,11 +36,11 @@ function getHeroChoice() {
         heroChoice = "longsword";
        };
       console.log(heroChoice);
-      getOpponentChoice();
+      resolve(heroChoice);
       });
     });
-    return heroChoice;
-  };
+  });
+};
 
 
 function getOpponentChoice() {
@@ -63,27 +64,28 @@ function getOpponentChoice() {
        opponentTest.textContent = "longsword";
        break;
     };
-  return opponentChoice;
+    return opponentChoice;
 };
 
 
-function playRound(heroSelection, opponentSelection) { 
-  heroSelection = getHeroChoice();
-  opponentSelection = getOpponentChoice();
+function playRound(heroChoice, opponentChoice) { 
+  getHeroChoice().then((heroChoice) => {
+    let opponentChoice = getOpponentChoice();
 
-  if (heroSelection === "boulder" && opponentSelection === "longsword" ||
-    heroSelection === "codex" && opponentSelection === "boulder" ||
-    heroSelection === "longsword" && opponentSelection === "codex") {
-      outputText.textContent = "You have triumphed over your foe!";
-      // ++heroScore;      
-  } else if (heroSelection == "boulder" && opponentSelection == "codex" ||
-    heroSelection == "codex" && opponentSelection == "longsword" ||
-    heroSelection == "longsword" && opponentSelection == "boulder") {
-      outputText.textContent = "Your enemy was stronger... This time."
-      // ++opponentScore;     
-  } else {
-    outputText.textContent = "Alas, a tie! No points this round."
-  } 
+    if (heroChoice === "boulder" && opponentChoice === "longsword" ||
+      heroChoice === "codex" && opponentChoice === "boulder" ||
+      heroChoice === "longsword" && opponentChoice === "codex") {
+        outputText.textContent = "You have triumphed over your foe!";
+        // ++heroScore;      
+    } else if (heroChoice == "boulder" && opponentChoice == "codex" ||
+      heroChoice == "codex" && opponentChoice == "longsword" ||
+      heroChoice == "longsword" && opponentChoice == "boulder") {
+        outputText.textContent = "Your enemy was stronger... This time."
+        // ++opponentScore;     
+    } else {
+      outputText.textContent = "Alas, a tie! No points this round."
+    };
+  });
 
   // for (round = 1; round <= 5; round++) {
   //   playRound(heroSelection, opponentSelection);
@@ -114,7 +116,7 @@ function playRound(heroSelection, opponentSelection) {
 
 function playGame() {
 
-  getHeroChoice();
+  // getHeroChoice();
   playRound();
   // finishGame();
   // resetGame();
