@@ -2,6 +2,7 @@
 const weaponButtons = document.querySelectorAll(".weapon-button");
 const weaponText = document.querySelector(".weapon-text");
 const outputText = document.querySelector(".output-text");
+const duelResult = document.querySelector(".duel-result");
 
 const boulderWeapon = document.querySelector(".boulder-button");
 const codexWeapon = document.querySelector(".codex-button");
@@ -13,11 +14,11 @@ const codexIcon = document.querySelector(".codex-icon");
 const longswordIcon = document.querySelector(".longsword-icon");
 const opponentIcon = document.querySelector(".opponent-icon");
 
+// let opponentTest = document.querySelector(".opponent-test");
 
 let heroScore = 0;
 let opponentScore = 0;
-let round = 0;
-
+let round = 1;
 
 function getHeroChoice() {
   return new Promise((resolve) => {
@@ -35,7 +36,6 @@ function getHeroChoice() {
         weaponText.textContent = "A noble weapon, fit for the finest - and tallest - of knights!";
         heroChoice = "longsword";
        };
-      console.log(heroChoice);
       resolve(heroChoice);
       });
     });
@@ -46,26 +46,31 @@ function getHeroChoice() {
 function getOpponentChoice() {
   const weapons = ["boulder", "codex", "longsword"]
   let opponentChoice = weapons[(Math.floor(Math.random() * weapons.length))];
-  // TEMPORARY LINES FOR DEBUG //
-  let opponentTest = document.querySelector(".opponent-test");
-  console.log(opponentChoice);
 
   switch (opponentChoice) {
     case "boulder":
-       opponentIcon.classList.remove("opponent-icon");
-       opponentTest.textContent = "boulder";
+      // opponentTest.textContent = "boulder";
+      opponentIcon.src ="images/icon_boulder.webp";
        break;
     case "codex":
-       opponentIcon.classList.replace("opponent-icon", "codex-icon");
-       opponentTest.textContent = "codex";
+      // opponentTest.textContent = "codex";
+      opponentIcon.src ="images/icon_codex.webp";
        break;
     case "longsword": 
-       opponentIcon.classList.replace("opponent-icon", "longsword-icon");
-       opponentTest.textContent = "longsword";
+      // opponentTest.textContent = "longsword";
+      opponentIcon.src ="images/icon_sword.webp";
        break;
     };
     return opponentChoice;
 };
+
+
+function updateRounds() {
+  const roundText = document.querySelector(".round-text");
+  const roundNumber = document.querySelector(".current-round");
+  roundText.textContent = `You have won ${heroScore} rounds. Your opponent has won ${opponentScore} rounds.`;
+  roundNumber.textContent = `${round}`;
+}
 
 
 function playRound(heroChoice, opponentChoice) { 
@@ -76,50 +81,66 @@ function playRound(heroChoice, opponentChoice) {
       heroChoice === "codex" && opponentChoice === "boulder" ||
       heroChoice === "longsword" && opponentChoice === "codex") {
         outputText.textContent = "You have triumphed over your foe!";
-        // ++heroScore;      
+        ++heroScore;      
     } else if (heroChoice == "boulder" && opponentChoice == "codex" ||
       heroChoice == "codex" && opponentChoice == "longsword" ||
       heroChoice == "longsword" && opponentChoice == "boulder") {
         outputText.textContent = "Your enemy was stronger... This time."
-        // ++opponentScore;     
+        ++opponentScore;     
     } else {
       outputText.textContent = "Alas, a tie! No points this round."
     };
-  });
 
-  // for (round = 1; round <= 5; round++) {
-  //   playRound(heroSelection, opponentSelection);
-  //   const roundText = document.querySelector(".round-text");
-  //   roundText.textContent = `You have won ${heroScore} rounds. Your opponent has won ${opponentScore} rounds.`;
-  // }
+    updateRounds();
+    round++;
+  
+    if (round <= 5) {
+      playRound();
+    } else {
+      finishGame();
+    }
+  });
 }
 
+function finishGame() {
+  if (heroScore > opponentScore) {
+    duelResult.textContent = "Congratulations! You showed your might and won this duel.";
+  } else if (heroScore < opponentScore) {
+    duelResult.textContent = "Your opponent proved stronger than you. Keep practicing.";
+  } else {
+    duelResult.textContent = "Alas, a tie! The victory remains unclaimed.";  
+  }
 
- //  winner declaration at the end of all 5 rounds
-//  function finishGame() {
-//    const duelResult = document.querySelector(".duel-result");
-//    if (heroScore > opponentScore) {
-//      duelResult.textContent = "Congratulations! You showed your might and won this duel.";
-//    } else if (heroScore < opponentScore) {
-//      duelResult.textContent = "Your opponent proved stronger than you. Keep practicing.";
-//    } else {
-//      duelResult.textContent = "Alas, a tie! The victory remains unclaimed.";  
-//    }
-//    replayButton.style.visibility = "visible";
-//  }
+  boulderWeapon.disabled = true;
+  codexWeapon.disabled = true;
+  longswordWeapon.disabled = true;
+  weaponText.textContent = "";
+  replayButton.style.visibility = "visible";
+}
 
-// function resetGame() {
-//   replayButton.addEventListener("click", () => {
-//     location.reload();
-//   })
-// }
+function resetGame() {
+  replayButton.addEventListener("click", () => {
+    heroScore = 0;
+    opponentScore = 0;
+    round = 1;
+    boulderWeapon.disabled = false;
+    codexWeapon.disabled = false;
+    longswordWeapon.disabled = false;
+    replayButton.style.visibility = "hidden";
+
+
+    weaponText.textContent = "You cannot go into battle empty-handed.";
+    outputText.textContent = "No weapon was chosen yet.";
+    duelResult.textContent = "";
+    opponentIcon.src = "images/icon_opponent.webp";
+
+     playGame();
+   });
+};
 
 function playGame() {
-
-  // getHeroChoice();
   playRound();
-  // finishGame();
-  // resetGame();
+  resetGame();
 }
 
 playGame();
