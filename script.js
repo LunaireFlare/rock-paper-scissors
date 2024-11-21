@@ -14,7 +14,9 @@ const codexIcon = document.querySelector(".codex-icon");
 const longswordIcon = document.querySelector(".longsword-icon");
 const opponentIcon = document.querySelector(".opponent-icon");
 
-// let opponentTest = document.querySelector(".opponent-test");
+const roundText = document.querySelector(".round-text");
+const roundNumber = document.querySelector(".current-round");
+
 
 let heroScore = 0;
 let opponentScore = 0;
@@ -22,10 +24,9 @@ let round = 1;
 
 function getHeroChoice() {
   return new Promise((resolve) => {
-  let heroChoice = "";
-
   weaponButtons.forEach((weapon) => {
     weapon.addEventListener("click", () => {
+      let heroChoice = "";
       if (weapon.classList.contains("boulder-button")) {
         weaponText.textContent = "Literally crushing your enemies. Straightforward and efficient.";
         heroChoice = "boulder";
@@ -49,15 +50,12 @@ function getOpponentChoice() {
 
   switch (opponentChoice) {
     case "boulder":
-      // opponentTest.textContent = "boulder";
       opponentIcon.src ="images/icon_boulder.webp";
        break;
     case "codex":
-      // opponentTest.textContent = "codex";
       opponentIcon.src ="images/icon_codex.webp";
        break;
     case "longsword": 
-      // opponentTest.textContent = "longsword";
       opponentIcon.src ="images/icon_sword.webp";
        break;
     };
@@ -66,8 +64,6 @@ function getOpponentChoice() {
 
 
 function updateRounds() {
-  const roundText = document.querySelector(".round-text");
-  const roundNumber = document.querySelector(".current-round");
   roundText.textContent = `You have won ${heroScore} rounds. Your opponent has won ${opponentScore} rounds.`;
   roundNumber.textContent = `${round}`;
 }
@@ -82,9 +78,9 @@ function playRound(heroChoice, opponentChoice) {
       heroChoice === "longsword" && opponentChoice === "codex") {
         outputText.textContent = "You have triumphed over your foe!";
         ++heroScore;      
-    } else if (heroChoice == "boulder" && opponentChoice == "codex" ||
-      heroChoice == "codex" && opponentChoice == "longsword" ||
-      heroChoice == "longsword" && opponentChoice == "boulder") {
+    } else if (heroChoice === "boulder" && opponentChoice === "codex" ||
+      heroChoice === "codex" && opponentChoice === "longsword" ||
+      heroChoice === "longsword" && opponentChoice === "boulder") {
         outputText.textContent = "Your enemy was stronger... This time."
         ++opponentScore;     
     } else {
@@ -102,6 +98,7 @@ function playRound(heroChoice, opponentChoice) {
   });
 }
 
+
 function finishGame() {
   if (heroScore > opponentScore) {
     duelResult.textContent = "Congratulations! You showed your might and won this duel.";
@@ -114,33 +111,32 @@ function finishGame() {
   boulderWeapon.disabled = true;
   codexWeapon.disabled = true;
   longswordWeapon.disabled = true;
-  weaponText.textContent = "";
+  weaponText.textContent = "\u200b";
   replayButton.style.visibility = "visible";
 }
 
+replayButton.addEventListener("click", resetGame);
+
+
 function resetGame() {
-  replayButton.addEventListener("click", () => {
     heroScore = 0;
     opponentScore = 0;
     round = 1;
+
     boulderWeapon.disabled = false;
     codexWeapon.disabled = false;
     longswordWeapon.disabled = false;
-    replayButton.style.visibility = "hidden";
 
+    replayButton.style.visibility = "hidden";
 
     weaponText.textContent = "You cannot go into battle empty-handed.";
     outputText.textContent = "No weapon was chosen yet.";
+    roundNumber.textContent = "0";
+    roundText.textContent = "You haven't won a round yet, and neither has the enemy.";
     duelResult.textContent = "";
     opponentIcon.src = "images/icon_opponent.webp";
 
-     playGame();
-   });
-};
+     playRound();
+   };
 
-function playGame() {
-  playRound();
-  resetGame();
-}
-
-playGame();
+playRound();
