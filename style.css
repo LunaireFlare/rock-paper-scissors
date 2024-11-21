@@ -1,9 +1,4 @@
 /* --- color palette 
-OCRE: rgb(168, 102, 27)
-BROWN: rgb(51, 20, 2)
-DARKBLUE: rgb(36, 13, 99)
-RED: rgb(202, 9, 9) 
-
 RAISIN BLACK #1C202A
 DELFTBLUE #263560
 SLATE GREY #72879C
@@ -69,15 +64,9 @@ h1 {
   gap: 20px;
   max-width: 900px;
   margin: 20px auto;
-  /* background-color: red; */
 }
 
 /* -- PLAYERS' CHOICE -- */
-/* .rules img {
-  max-width: 40px;
-  margin-right: 10px;
-} */
-
 .players-choice {
   display: flex;
   justify-content: space-evenly;
@@ -137,7 +126,6 @@ h1 {
   justify-content: center;
   align-items: center;
   gap: 40px;
-  /* background-color: yellow; */
 } 
 
 .duel-output p {
@@ -150,10 +138,7 @@ h1 {
 }
 
 
-/* -- DUEL OUTPUT -- */
-.finished-game {
-}
-
+/* -- FINISHED GAME -- */
 .finished-game p {
   font-size: 28px;
   font-weight: bold;
@@ -173,8 +158,8 @@ h1 {
 }
 
 .replay-button:hover {
-  transform: scale(0.95);
   background: #967E40;
+  box-shadow: 0px 0px 0px #D2CEC3 inset;
 }
 
 
