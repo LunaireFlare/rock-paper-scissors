@@ -19,7 +19,7 @@ SIENNA #953213*/
 }
 
 body {
-  background-image: url("/images/background.jpg");
+  background-image: url("./images/background.jpg");
   background-size: 100%;
 }
 
